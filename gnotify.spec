@@ -2,12 +2,13 @@ Summary:	GNotify - a notification-service for Desktop-Environments
 Summary(pl):	GNotify - us³uga powiadamiania dla ¶rodowisk graficznych
 Name:		gnotify
 Version:	1.0
-Release:	0.1
+Release:	1
 Epoch:		1
 License:	GPL
 Group:		X11/Applications
 Source0:	http://dl.sourceforge.net/gnotify/%{name}-%{version}.tar.gz
 # Source0-md5:	8c0248e1c53a2c595821acd8590ce858
+Source1:	%{name}.xml
 Patch0:		%{name}-clean.patch
 Patch1:		%{name}-optflags.patch
 URL:		http://gnotify.sourceforge.net/
@@ -50,7 +51,7 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_mandir}/man1,%{_sysconfdir}}
 
 gzip -dc gnotify.1.gz > $RPM_BUILD_ROOT%{_mandir}/man1/gnotify.1
-install gnotify.xml $RPM_BUILD_ROOT%{_sysconfdir}
+install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
