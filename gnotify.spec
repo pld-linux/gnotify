@@ -35,6 +35,11 @@ cp /usr/share/automake/INSTALL .
 %install
 rm -rf $RPM_BUILD_ROOT
 
+install -d $RPM_BUILD_ROOT/%{_mandir}/man1
+install -d $RPM_BUILD_ROOT/%{_sysconfdir}
+install gnotify.1.gz $RPM_BUILD_ROOT/%{_mandir}/man1
+install gnotify.xml $RPM_BUILD_ROOT/%{_sysconfdir}
+
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
@@ -54,3 +59,5 @@ rm -rf $RPM_BUILD_ROOT
 %doc ChangeLog NEWS README TODO
 %doc %{_docdir}/%{name}
 %attr(755,root,root) %{_bindir}/*
+%{_mandir}/man1/*
+%config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/*
