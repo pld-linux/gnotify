@@ -1,0 +1,13 @@
+--- gnotify-1.0/src/Makefile.am	2004-05-20 18:55:26.000000000 +0200
++++ gnotify-1.0.new/src/Makefile.am	2004-06-01 21:18:07.758890344 +0200
+@@ -9,8 +9,8 @@
+ 
+ AM_CFLAGS =\
+ 	`pkg-config --cflags libxml-2.0`\
+-	 -Wall\
+-	 -O3
++	 -Wall
++#	 -O3
+ 
+ bin_PROGRAMS = gnotify
+ 
