@@ -8,6 +8,9 @@ Group:		X11/Applications
 Source0:	http://dl.sourceforge.net/gnotify/%{name}-%{version}.tar.gz
 # Source0-md5:	8c0248e1c53a2c595821acd8590ce858
 URL:		http://gnotify.sourceforge.net/
+BuildRequires:	automake
+BuildRequires:	autoconf
+BuildRequires:	gtk+2-devel  >= 2.2.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -23,8 +26,6 @@ cp /usr/share/automake/COPYING .
 cp /usr/share/automake/INSTALL .
 
 %build
-# if ac/am/* rebuilding is necessary, do it in this order and add
-# appropriate BuildRequires
 %{__aclocal}
 %{__autoconf}
 %{__automake}
