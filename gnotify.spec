@@ -8,9 +8,11 @@ License:	GPL
 Group:		X11/Applications
 Source0:	http://dl.sourceforge.net/gnotify/%{name}-%{version}.tar.gz
 # Source0-md5:	8c0248e1c53a2c595821acd8590ce858
+Patch0:		%{name}-clean.patch
+Patch1:		%{name}-optflags.patch
 URL:		http://gnotify.sourceforge.net/
-BuildRequires:	automake
 BuildRequires:	autoconf
+BuildRequires:	automake
 BuildRequires:	gtk+2-devel >= 2:2.2.0
 BuildRequires:	libxml2-devel >= 2.0
 BuildRequires:	pkgconfig
@@ -29,10 +31,10 @@ GNOME/XFce/FVWM/Fluxbox/Enlightenment i innych ¶rodowisk graficznych
 oraz zarz±dców okien.
 
 %prep
-%setup -q -n %{name}-%{version}
+%setup -q
+%patch0 -p1
+%patch1 -p1
 rm -f {COPYING,INSTALL,mkinstalldirs}
-cp -f /usr/share/automake/COPYING .
-cp -f /usr/share/automake/INSTALL .
 
 %build
 %{__aclocal}
@@ -40,7 +42,8 @@ cp -f /usr/share/automake/INSTALL .
 %{__autoheader}
 %{__automake}
 %configure
-%{__make}
+%{__make} \
+	CFLAGS="%{rpmcflags}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
