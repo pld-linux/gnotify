@@ -1,0 +1,14 @@
+--- gnotify-1.0/Makefile.am	2004-05-20 18:55:26.000000000 +0200
++++ gnotify-1.0.new/Makefile.am	2004-06-01 18:54:57.183856256 +0200
+@@ -7,9 +7,9 @@
+ 
+ gnotifydocdir = ${prefix}/share/doc/gnotify
+ gnotifydoc_DATA = \
+-	COPYING\
++#	COPYING\
+ 	ChangeLog\
+-	INSTALL\
++#	INSTALL\
+ 	TODO\
+ 	PROTOCOL
+ 
