@@ -1,4 +1,5 @@
-Summary:	GNotify provides a notification-service for Desktop-Environments.
+Summary:	GNotify - a notification-service for Desktop-Environments
+Summary(pl):	GNotify - us³uga powiadamiania dla ¶rodowisk graficznych
 Name:		gnotify
 Version:	1.0
 Release:	0.1
@@ -10,35 +11,43 @@ Source0:	http://dl.sourceforge.net/gnotify/%{name}-%{version}.tar.gz
 URL:		http://gnotify.sourceforge.net/
 BuildRequires:	automake
 BuildRequires:	autoconf
-BuildRequires:	gtk+2-devel  >= 2.2.0
+BuildRequires:	gtk+2-devel >= 2:2.2.0
+BuildRequires:	libxml2-devel >= 2.0
+BuildRequires:	pkgconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 GNotify is a little daemon written in C using GTK. It provides (like
 the KDE KNotify-system) a notification-service for
-Gnome/XFce/FVWM/Fluxbox/Enlightenment and other
+GNOME/XFce/FVWM/Fluxbox/Enlightenment and other
 Desktop-Environments/WindowManagers.
+
+%description -l pl
+GNotify to ma³y demon napisany w C z u¿yciem GTK. Dostarcza (podobnie
+jak system KDE KNotify) us³ugê powiadamiania dla ¶rodowisk
+GNOME/XFce/FVWM/Fluxbox/Enlightenment i innych ¶rodowisk graficznych
+oraz zarz±dców okien.
 
 %prep
 %setup -q -n %{name}-%{version}
-rm -rf {COPYING,INSTALL,mkinstalldirs}
-cp /usr/share/automake/COPYING .
-cp /usr/share/automake/INSTALL .
+rm -f {COPYING,INSTALL,mkinstalldirs}
+cp -f /usr/share/automake/COPYING .
+cp -f /usr/share/automake/INSTALL .
 
 %build
 %{__aclocal}
 %{__autoconf}
+%{__autoheader}
 %{__automake}
 %configure
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
+install -d $RPM_BUILD_ROOT{%{_mandir}/man1,%{_sysconfdir}}
 
-install -d $RPM_BUILD_ROOT/%{_mandir}/man1
-install -d $RPM_BUILD_ROOT/%{_sysconfdir}
-install gnotify.1.gz $RPM_BUILD_ROOT/%{_mandir}/man1
-install gnotify.xml $RPM_BUILD_ROOT/%{_sysconfdir}
+gzip -dc gnotify.1.gz > $RPM_BUILD_ROOT%{_mandir}/man1/gnotify.1
+install gnotify.xml $RPM_BUILD_ROOT%{_sysconfdir}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
@@ -46,18 +55,9 @@ install gnotify.xml $RPM_BUILD_ROOT/%{_sysconfdir}
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%pre
-
-%post
-
-%preun
-
-%postun
-
 %files
 %defattr(644,root,root,755)
-%doc ChangeLog NEWS README TODO
-%doc %{_docdir}/%{name}
+%doc ChangeLog NEWS PROTOCOL README TODO
 %attr(755,root,root) %{_bindir}/*
 %{_mandir}/man1/*
-%config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/*
+%config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/gnotify.xml
