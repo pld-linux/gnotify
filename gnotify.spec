@@ -22,13 +22,13 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %description
 GNotify is a little daemon written in C using GTK. It provides (like
 the KDE KNotify-system) a notification-service for
-GNOME/XFce/FVWM/Fluxbox/Enlightenment and other
+GNOME/Xfce/FVWM/Fluxbox/Enlightenment and other
 Desktop-Environments/WindowManagers.
 
 %description -l pl
 GNotify to ma³y demon napisany w C z u¿yciem GTK. Dostarcza (podobnie
 jak system KDE KNotify) us³ugê powiadamiania dla ¶rodowisk
-GNOME/XFce/FVWM/Fluxbox/Enlightenment i innych ¶rodowisk graficznych
+GNOME/Xfce/FVWM/Fluxbox/Enlightenment i innych ¶rodowisk graficznych
 oraz zarz±dców okien.
 
 %prep
