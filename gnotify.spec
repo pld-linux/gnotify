@@ -1,5 +1,5 @@
 Summary:	GNotify - a notification-service for Desktop-Environments
-Summary(pl):	GNotify - us≥uga powiadamiania dla ∂rodowisk graficznych
+Summary(pl.UTF-8):   GNotify - us≈Çuga powiadamiania dla ≈õrodowisk graficznych
 Name:		gnotify
 Version:	1.2
 Release:	1
@@ -26,11 +26,11 @@ the KDE KNotify-system) a notification-service for
 GNOME/Xfce/FVWM/Fluxbox/Enlightenment and other
 Desktop-Environments/WindowManagers.
 
-%description -l pl
-GNotify to ma≥y demon napisany w C z uøyciem GTK. Dostarcza (podobnie
-jak system KDE KNotify) us≥ugÍ powiadamiania dla ∂rodowisk
-GNOME/Xfce/FVWM/Fluxbox/Enlightenment i innych ∂rodowisk graficznych
-oraz zarz±dcÛw okien.
+%description -l pl.UTF-8
+GNotify to ma≈Çy demon napisany w C z u≈ºyciem GTK. Dostarcza (podobnie
+jak system KDE KNotify) us≈Çugƒô powiadamiania dla ≈õrodowisk
+GNOME/Xfce/FVWM/Fluxbox/Enlightenment i innych ≈õrodowisk graficznych
+oraz zarzƒÖdc√≥w okien.
 
 %prep
 %setup -q
