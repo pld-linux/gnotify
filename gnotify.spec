@@ -1,5 +1,5 @@
 Summary:	GNotify - a notification-service for Desktop-Environments
-Summary(pl.UTF-8):   GNotify - usługa powiadamiania dla środowisk graficznych
+Summary(pl.UTF-8):	GNotify - usługa powiadamiania dla środowisk graficznych
 Name:		gnotify
 Version:	1.2
 Release:	1
