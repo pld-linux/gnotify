@@ -2,7 +2,7 @@ Summary:	GNotify - a notification-service for Desktop-Environments
 Summary(pl.UTF-8):	GNotify - usługa powiadamiania dla środowisk graficznych
 Name:		gnotify
 Version:	1.2
-Release:	1
+Release:	2
 Epoch:		1
 License:	GPL
 Group:		X11/Applications
@@ -39,13 +39,15 @@ oraz zarządców okien.
 rm -f {COPYING,INSTALL,mkinstalldirs}
 
 %build
+%{__libtoolize}
 %{__aclocal}
 %{__autoconf}
 %{__autoheader}
 %{__automake}
 %configure
 %{__make} \
-	CFLAGS="%{rpmcflags}"
+	CFLAGS="%{rpmcflags}" \
+	LDFLAGS="%{rpmldflags} -lpthread"
 
 %install
 rm -rf $RPM_BUILD_ROOT
