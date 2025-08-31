@@ -1,0 +1,11 @@
+--- gnotify-1.2/src/gnotify_gtk.c.orig	2004-08-31 13:35:18.000000000 +0200
++++ gnotify-1.2/src/gnotify_gtk.c	2025-08-31 19:56:44.220702846 +0200
+@@ -202,7 +202,7 @@ void gnotify_about(void)
+ void showmessage(int type, int buttons, char *text)
+ {
+   GtkWidget *msg;
+-  msg=gtk_message_dialog_new(NULL,GTK_DIALOG_DESTROY_WITH_PARENT,type,buttons,text);
++  msg=gtk_message_dialog_new(NULL,GTK_DIALOG_DESTROY_WITH_PARENT,type,buttons,"%s",text);
+   g_signal_connect_swapped(GTK_OBJECT(msg),"response",G_CALLBACK(gtk_widget_destroy),GTK_OBJECT(msg));
+   gtk_widget_show_all(msg);
+   return;

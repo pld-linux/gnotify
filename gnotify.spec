@@ -2,7 +2,7 @@ Summary:	GNotify - a notification-service for Desktop-Environments
 Summary(pl.UTF-8):	GNotify - usługa powiadamiania dla środowisk graficznych
 Name:		gnotify
 Version:	1.2
-Release:	3
+Release:	4
 Epoch:		1
 License:	GPL
 Group:		X11/Applications
@@ -11,6 +11,7 @@ Source0:	https://downloads.sourceforge.net/gnotify/%{name}-%{version}.tar.gz
 Source1:	%{name}.xml
 Patch0:		%{name}-clean.patch
 Patch1:		%{name}-optflags.patch
+Patch2:		%{name}-format.patch
 URL:		https://gnotify.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -36,7 +37,9 @@ oraz zarządców okien.
 %setup -q
 %patch -P0 -p1
 %patch -P1 -p1
-rm -f {COPYING,INSTALL,mkinstalldirs}
+%patch -P2 -p1
+# symlinks, to replace by automake
+%{__rm} COPYING INSTALL install-sh missing mkinstalldirs
 
 %build
 %{__libtoolize}
@@ -44,23 +47,27 @@ rm -f {COPYING,INSTALL,mkinstalldirs}
 %{__autoconf}
 %{__autoheader}
 %{__automake}
+# gnotify.h is missing externs, some of them never defined in .c - use -fcommon for now
+CFLAGS="%{rpmcflags} -fcommon"
 %configure
-%{__make} \
-	CFLAGS="%{rpmcflags}" \
-	LDFLAGS="%{rpmldflags} -lpthread"
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_mandir}/man1,%{_sysconfdir}}
 
-gzip -dc gnotify.1.gz > $RPM_BUILD_ROOT%{_mandir}/man1/gnotify.1
-install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}
-
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-# not neccessary?
-rm -r $RPM_BUILD_ROOT%{_includedir}/GNotify
+# missing from make install
+gzip -dc gnotify.1.gz > $RPM_BUILD_ROOT%{_mandir}/man1/gnotify.1
+
+cp -p %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}
+
+# no API, useless
+%{__rm} -r $RPM_BUILD_ROOT%{_includedir}/GNotify
+# packaged as %doc
+%{__rm} -r $RPM_BUILD_ROOT%{_docdir}/gnotify
 
 %clean
 rm -rf $RPM_BUILD_ROOT
