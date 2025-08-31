@@ -6,12 +6,12 @@ Release:	3
 Epoch:		1
 License:	GPL
 Group:		X11/Applications
-Source0:	http://dl.sourceforge.net/gnotify/%{name}-%{version}.tar.gz
+Source0:	https://downloads.sourceforge.net/gnotify/%{name}-%{version}.tar.gz
 # Source0-md5:	6e7a031a5b1e9b12ac04992ccbf71627
 Source1:	%{name}.xml
 Patch0:		%{name}-clean.patch
 Patch1:		%{name}-optflags.patch
-URL:		http://gnotify.sourceforge.net/
+URL:		https://gnotify.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	gtk+2-devel >= 2:2.2.0
